@@ -1,0 +1,55 @@
+package domain;
+
+import java.util.Objects;
+
+public abstract class Product {
+    private String title;
+    private Pricing price;
+    public int days;
+
+    public Product(String title){
+        setTitle(title);
+    }
+
+    private void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()){
+            throw new IllegalArgumentException("Title may not be empty.");
+        }
+        this.title=title;
+    }
+    public String getTitle() {
+        return title;
+    }
+
+
+    private void setPrice (Pricing pricing){
+        this.price=pricing;
+    }
+
+    public Double getPrice(int days){
+        return price.getPrice(days);
+    }
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Product) {
+            return ((Product) o).getTitle().equals(this.getTitle());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "title='" + title + '\'' +
+                ", price=" + price +
+                '}';
+    }
+}
