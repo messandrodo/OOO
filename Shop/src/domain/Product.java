@@ -22,7 +22,7 @@ public abstract class Product {
     }
 
 
-    private void setPrice (Pricing pricing){
+    public void setPrice (Pricing pricing){
         this.price=pricing;
     }
 
@@ -47,9 +47,6 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "title='" + title + '\'' +
-                ", price=" + price +
-                '}';
+        return this.getTitle() + "  (" + this.getClass().getSimpleName() + ")  ";
     }
 }

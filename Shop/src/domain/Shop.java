@@ -23,4 +23,9 @@ public class Shop {
         product.days = days;
         return product.getPrice(days);
     }
+
+    public void writeData(){
+        TextWriter writer = new TextWriter();
+        writer.setDataAction(this);
+    }
 }

@@ -58,6 +58,7 @@ public class ShopUI {
         String type = JOptionPane.showInputDialog("Enter the type (M for movie/G for game/CD for CD):");
 
         shop.getShopDatabase().addProduct(title, type);
+        shop.writeData();
     }
 
 //    public static void removeProduct(Shop shop){

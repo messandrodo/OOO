@@ -3,6 +3,7 @@ package domain.database;
 import domain.Game;
 import domain.Movie;
 import domain.Product;
+import domain.TextWriter;
 
 import java.util.*;
 
@@ -13,6 +14,8 @@ public class ShopDatabase {
     public ShopDatabase(){
         this.products = new HashMap<>();
     }
+
+
     public void addProduct(String title, String type){
         if(products.containsKey(pid)){
             throw new IllegalArgumentException("Shop already contains an item with this ID");
