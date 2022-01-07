@@ -6,6 +6,7 @@ public abstract class Product {
     private String title;
     private Pricing price;
     public int days;
+    public boolean lent = false;
 
     public Product(String title){
         setTitle(title);
@@ -16,6 +17,13 @@ public abstract class Product {
             throw new IllegalArgumentException("Title may not be empty.");
         }
         this.title=title;
+    }
+
+    public void setLent(Boolean lent){
+        this.lent = lent;
+    }
+    public boolean getLent(){
+        return this.lent;
     }
     public String getTitle() {
         return title;
@@ -47,6 +55,8 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return this.getTitle() + "  (" + this.getClass().getSimpleName() + ")  ";
+        return this.getTitle() +"  €" + getPrice(5) +"  (" + this.getClass().getSimpleName() + ")  ";
     }
+
+
 }

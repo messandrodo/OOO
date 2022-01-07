@@ -39,7 +39,13 @@ public class ShopUI {
             choice = Integer.parseInt(choiceString);
             if (choice == 1){
                 addProduct(shop);
-            } else if (choice == 7) {
+            }else if(choice == 3) {
+                loanProduct(shop);
+            } else if (choice == 4) {
+                getLoanStatus(shop);
+            }else if (choice == 5) {
+                returnProduct(shop);
+            }else if (choice == 7) {
                 showProduct(shop);
             } else if (choice == 8) {
                 showPrice(shop);
@@ -53,12 +59,50 @@ public class ShopUI {
         }
     }
 
+    private void returnProduct(Shop shop) {
+        String pid = JOptionPane.showInputDialog("Enter the ID: ");
+        if (shop.getShopDatabase().getProduct(pid).getLent() == false){
+            JOptionPane.showMessageDialog(null, "The product with ID " + pid + " is not being lent");
+        }else {
+            String confirm = JOptionPane.showInputDialog("Do you want to bring the product back? yes / no");
+            switch (confirm) {
+                case "yes":
+                    shop.getShopDatabase().getProduct(pid).setLent(false);
+                    JOptionPane.showMessageDialog(null, "the product with ID " + pid + " is from now on again available");
+                    break;
+                case "no":
+                    JOptionPane.showMessageDialog(null, "The pdouct with id " + pid + " is still in your posses.");
+                    break;
+            }
+        }
+    }
+
+    private void getLoanStatus(Shop shop) {
+        String pid = JOptionPane.showInputDialog("Enter the ID:");
+        Boolean lent = shop.getShopDatabase().getProduct(pid).getLent();
+        if (lent){
+            JOptionPane.showMessageDialog(null, "The product with ID: " + pid +" is currently lent");
+        } else{
+            JOptionPane.showMessageDialog(null, "The product with ID: " + pid +" is currently available");
+        }
+    }
+
     public static void addProduct(Shop shop) {
         String title = JOptionPane.showInputDialog("Enter the title:");
         String type = JOptionPane.showInputDialog("Enter the type (M for movie/G for game/CD for CD):");
 
         shop.getShopDatabase().addProduct(title, type);
         shop.writeData();
+    }
+
+    public static void loanProduct(Shop shop){
+        int pid = Integer.parseInt(JOptionPane.showInputDialog("Enter the ID:"));
+        try{
+            shop.getShopDatabase().loanProduct(pid);
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Shop has no item with the following ID: " + pid);
+        }
+
     }
 
 //    public static void removeProduct(Shop shop){

@@ -14,17 +14,11 @@ public class TextWriter implements Data{
         ArrayList<HashMap.Entry<Integer, Product>> list = shop.getShopDatabase().getProducts();
         File shopPath = new File("Shop/src/data/shop.txt");
 
-        // shop.txt exists?
-        try {
-            shopPath.createNewFile();
-        } catch (Exception ignored) {}
-
         BufferedWriter bf = null;
-
         try {
             bf = new BufferedWriter(new FileWriter(shopPath));
             for (HashMap.Entry<Integer, Product> item: list){
-                    bf.write(item.getKey() + "\t" + item.getValue().getTitle() + "\t" + item.getValue().getClass().getSimpleName() + "\t");
+                    bf.write(item.getKey() + "\t" + item.getValue().getTitle() + "\t" + item.getValue().getClass().getSimpleName() + "\t" + item.getValue().getLent());
                     bf.newLine();
 
             }

@@ -89,4 +89,11 @@ public class ShopDatabase {
         this.pid = pid + 1;
     }
 
+    public void loanProduct(int pid) {
+        if (!products.containsKey(pid)) {
+            throw new IllegalArgumentException("Shop has no item with the following id: " + pid);
+        }
+        Product product = products.get(pid);
+        product.setLent(true);
+    }
 }
