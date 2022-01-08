@@ -4,6 +4,7 @@ package ui;
 import domain.EncryptionFacade;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -22,7 +23,7 @@ public class CodingUI extends VBox{
     public CodingUI(Stage primaryStage) {
         encryptionFacade = new EncryptionFacade();
         Label text = new Label("Typ hier je text");
-        Label method = new Label("Select hier welk algoritme je wilt gebruiken: ");
+        Label method = new Label("Selecteer hier welk algoritme je wilt gebruiken: ");
 
         tekstveld = new TextField();
 
@@ -37,9 +38,13 @@ public class CodingUI extends VBox{
         resultaat = new Text();
 
         VBox root = new VBox(text, tekstveld, method, algoritme, codeer, decodeer, resultaat);
-        Scene main = new Scene(root, 250, 250);
+        Scene main = new Scene(root, 400, 250);
         primaryStage.setTitle("Encryptie");
         primaryStage.setScene(main);
+
+        //css
+        text.setPadding(new Insets(10,10,10,10));
+      tekstveld.setPadding(new Insets(10,10,10,10));
 
 
     }
